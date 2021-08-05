@@ -11,8 +11,8 @@ from core.serializers import CountrySerializer
 
 class CountryListAPIView(APIView):
     def get(self, request):
-        country_list = CountrySerializer(Country.objects.all(), many=True)
-        serializer = CountrySerializer(country_list)
+        country = Country.objects.all()
+        serializer = CountrySerializer(country, many=True)
         return Response(serializer.data)
 
 
