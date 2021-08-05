@@ -24,11 +24,12 @@ class CountryAPIView(APIView):
 
 
 class CountryCreateAPIView(APIView):
-    def post(self, request):
+        def post(self, request):
         serializer = CountrySerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        return Response(serializer.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
 
+        return Response(serializer.data)
 
 class CountryUpdateAPIView(APIView):
     def post(self, request, pk):
