@@ -13,7 +13,7 @@ class Command(BaseCommand):
 
         countries = get_country_api_data()
         for country in countries:
-            _obj = {
+            obj = {
                 'name': country['name'],
                 'alphacode2': country['alpha2Code'],
                 'alphacode3': country['alpha3Code'],
@@ -24,19 +24,18 @@ class Command(BaseCommand):
                 'subregion': country['subregion']
             }
 
-            _country_obj = Country.objects.create(**_obj)
+            country_obj = Country.objects.create(**obj)
             for language in country['languages']:
                 print(language)
-                _lang_obj = {
+                lang_obj = {
                     'iso639_1': language['iso639_1'],
                     'iso639_2': language['iso639_2'],
                     'name': language['name'],
                     'nativeName': language['nativeName'],
-                    'country': _country_obj
+                    'country': country_obj
                 }
-                Language.objects.create(**_lang_obj)
+                Language.objects.create(**lang_obj)
 
             for timezone in country['timezones']:
-                Timezone.objects.create(timezone=timezone, country=_country_obj)
+                Timezone.objects.create(timezone=timezone, country=country_obj)
 
-        self.stdout.write(self.style.SUCCESS('Data saved successfuly'))
