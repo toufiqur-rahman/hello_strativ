@@ -8,7 +8,7 @@ class LanguageSerializer(serializers.ModelSerializer):
         model = Language
         #fields = ['iso639_1', 'iso639_2', 'name', 'nativeName']
         #fields = ['iso639_2', 'name', 'nativeName']
-
+        
 
 class TimezoneSerializer(serializers.ModelSerializer):
     class Meta:
