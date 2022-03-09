@@ -54,7 +54,6 @@ class SameLanguageCountryAPIView(APIView):
     def get(self, request):
         language = request.GET.get('language', None)
         if language:
-            # Language.objects.filter(name=language)
             countries = Country.objects.filter(languages__name__icontains=language)
             serializer = CountrySerializer(countries, many=True)
             return Response(serializer.data)
