@@ -6,7 +6,7 @@ from core.models import Country, Language, Timezone
 class LanguageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Language
-        fields = ['iso639_1', 'iso639_2', 'name', 'nativeName']
+        #fields = ['iso639_1', 'iso639_2', 'name', 'nativeName']
         #fields = ['iso639_2', 'name', 'nativeName']
 
 
